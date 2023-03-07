@@ -1,3 +1,14 @@
+function getTicker(){
+ return window.location.pathname.split("/")[2];
+}
+
+let previousTicker = getTicker;
+
+function closeBuffett(){
+    document.body.getElementsByClassName("v-modal")[0].remove()
+    Array.from(document.body.getElementsByClassName("el-dialog__wrapper gf")).forEach(function(element){
+    element.remove()});
+}
 
 function removePaywall(){
 
@@ -11,4 +22,19 @@ function removePaywall(){
     }
 }
 
-setTimeout(removePaywall, 3000);
+function urlPolling(){
+    newTicker = getTicker();
+    if (newTicker !== previousTicker){
+        previousTicker = newTicker;
+        main()
+    } 
+}
+
+function main(){
+    console.log("--- guru running ---");
+    setTimeout(removePaywall, 2000);
+    setTimeout(closeBuffett, 7000);
+}
+
+main()
+setInterval(urlPolling, 1000);
