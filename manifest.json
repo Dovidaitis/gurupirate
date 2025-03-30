@@ -1,16 +1,14 @@
 {
     "manifest_version": 3,
     "name": "gurupirate",
-    "version": "0.2.1",
+    "version": "0.2.2",
   
     "description": "Disable annoying paywalls on GuruFocus",
     "content_scripts": [
         {
             "matches": ["https://www.gurufocus.com/stock/*"],
             "js": ["main.js"],
-            "inject_js":{
-                "run_at": "document_end"
-                }
+            "run_at": "document_end"
         }
     ],
     "permissions": [
@@ -22,6 +20,4 @@
         {
             "64":"./assets/logo.png"
         }
-    
-    
 }
