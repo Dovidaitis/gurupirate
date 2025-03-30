@@ -1,29 +1,29 @@
 function getTicker(){
- return window.location.pathname.split("/")[2];
+    return window.location.pathname.split("/")[2];
 }
 
-let previousTicker = getTicker;
+let previousTicker = getTicker();
 
 function closeBuffett(){
-    document.body.getElementsByClassName("v-modal")[0].remove()
+    const modal = document.body.getElementsByClassName("v-modal")[0]
+    if (modal) {
+        modal.remove();
+      }
     Array.from(document.body.getElementsByClassName("el-dialog__wrapper gf")).forEach(function(element){
     element.remove()});
 }
 
 function removePaywall(){
-
     document.body.style.overflow = "visible";
 
-    var elements = document.body.getElementsByClassName("paywall-shadow");
-    if (elements){
-        for (var i = 0; i < elements.length; i++) {
-            elements[i].remove();
-        }
-    }
+    const elements = document.body.getElementsByClassName("paywall-shadow");
+    Array.from(elements).forEach(function(element) {
+        element.remove();
+    });
 }
 
 function urlPolling(){
-    newTicker = getTicker();
+    const newTicker = getTicker();
     if (newTicker !== previousTicker){
         previousTicker = newTicker;
         main()
